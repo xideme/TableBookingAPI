@@ -12,5 +12,8 @@
   "dependencies": {
     "express": "^4.21.1",
     "swagger-ui-express": "^5.0.1"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
