@@ -8,6 +8,20 @@ app.get('/clients', (req, res) => {
     res.send(["Nikita Pupkin", "Mart Mets"])
 })
 
+app.get('/clients', (req, res) => {
+    res.send(clients)
+})
+
+app.get('/clients/:id', (req, res) => {
+
+    if(typeof clients[req.params.id - 1] == 'undefined')
+    {
+        return res.status(404).send({error: "Game not found"})
+    }
+
+    res.send(clients[req.params.id - 1])
+})
+
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {console.log
