@@ -16,7 +16,7 @@ app.get('/clients/:id', (req, res) => {
 
     if(typeof clients[req.params.id - 1] == 'undefined')
     {
-        return res.status(404).send({error: "Game not found"})
+        return res.status(404).send({error: "Client not found"})
     }
 
     res.send(clients[req.params.id - 1])
