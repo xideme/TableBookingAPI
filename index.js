@@ -28,10 +28,6 @@ const clients = [
 ];
 
 app.get('/clients', (req, res) => {
-    res.send(["Nikita Pupkin", "Mart Mets"])
-})
-
-app.get('/clients', (req, res) => {
     res.send(clients)
 })
 

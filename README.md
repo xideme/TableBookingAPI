@@ -29,24 +29,27 @@ https://studio-ws.apicur.io/sharing/00d7d3a4-e248-43d2-b5b0-05ee50533857
 #### Get all items
 
 ```http
-  GET /api/items
+  GET /clients
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+| `clients` | `string` | Get a list of all clients |
 
 #### Get item
 
 ```http
-  GET /api/items/${id}
+  GET /clients/{id}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
-#### add(num1, num2)
 
-Takes two numbers and returns the sum.
+
+
+## Database
+
+![Database](https://raw.githubusercontent.com/xideme/TableBookingAPI/refs/heads/main/erm.png)
 
