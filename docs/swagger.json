@@ -1,45 +1,125 @@
 {
-  "openapi": "3.0.2",
-  "info": {
-      "title": "TARgv23TableBookingApi",
-      "version": "1.0.0"
-  },
-  "paths": {
-      "/clients": {
-          "get": {
-              "tags": [
-                  "clients"
-              ],
-              "responses": {
-                  "200": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "type": "array",
-                                  "items": {
-                                      "type": "string"
-                                  }
-                              },
-                              "examples": {
-                                  "List of clients": {
-                                      "value": [
-                                          [
-                                              "Nikita Zapupkin",
-                                              "Mark Põlv"
-                                          ]
-                                      ]
-                                  }
-                              }
-                          }
-                      },
-                      "description": "List of clients\n"
-                  }
-              },
-              "summary": "Get a list of all clients",
-              "description": "Returns a list of all Clients in the api.\n"
-          }
-      },
-      "/tables": {},
-      "/reservations": {}
-  }
+    "openapi": "3.0.2",
+    "info": {
+        "title": "TARgv23TableBookingApi",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/clients": {
+            "get": {
+                "tags": [
+                    "clients"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of clients": {
+                                        "value": [
+                                            [
+                                                "Nikita Zapupkin",
+                                                "Mark Põlv"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "List of clients\n"
+                    }
+                },
+                "summary": "Get a list of all clients",
+                "description": "Returns a list of all Clients in the api.\n"
+            }
+        },
+        "/clients/{id}": {
+            "get": {
+                "tags": [
+                    "details"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "client_id": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Full details of a client.": {
+                                        "value": "[\n    {id: 1, name: \"Mihhail\", phone: \"+3722135\", email: \"misha228@hz.ee\", bonus_level: \"5\"},\n    {id: 2, name: \"Misa Bagadin\", phone: \"+3725527555\", email: \"faszz@hz.ee\", bonus_level: \"3\"}\n]"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns full details of a given Client id"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Missing parameter": {
+                                        "value": {
+                                            "Error": "Invalid client id"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "ID was missing"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "Not found": {
+                                        "value": {
+                                            "error": "Client not found"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Client wasn't found in array"
+                    }
+                },
+                "operationId": "id",
+                "summary": "Get the full details of a client",
+                "description": "Return full details of a given Client id."
+            }
+        }
+    }
 }
