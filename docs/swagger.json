@@ -47,14 +47,7 @@
                             },
                             "examples": {
                                 "Example of the client": {
-                                    "value": [
-                                        {
-                                            "name": "y",
-                                            "phone": "hdb",
-                                            "email": "0",
-                                            "bonus_level": ""
-                                        }
-                                    ]
+                                    "value": "\n{\n    \"name\": \"Test\",\n    \"phone\": \"5555\",\n    \"email\": \"test@gmail.com\",\n    \"bonus_level\": \"3\"\n}"
                                 }
                             }
                         }
@@ -73,7 +66,7 @@
                                 },
                                 "examples": {
                                     "Example of the client": {
-                                        "value": "[\n    {\n        \"name\": \"mario\",\n        \"phone\": \"421424124\",\n        \"email\": \"ggwgqwgq@.com,\n        \"bonus_level\": \"5\"\n    }\n]"
+                                        "value": "{\n    \"name\": \"mario\",\n    \"phone\": \"421424124\",\n    \"email\": \"ggwgqwgq@.com,\n    \"bonus_level\": \"5\"\n}\n"
                                     }
                                 }
                             }
