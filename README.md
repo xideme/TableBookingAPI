@@ -2,6 +2,8 @@
  
 How to run
 - open terminal in backend project
+- npm init -y
+- npm install express
 - type command "nodemon ."
 - the project will open
 
