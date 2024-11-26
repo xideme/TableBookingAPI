@@ -37,6 +37,52 @@
                 },
                 "summary": "Get a list of all clients",
                 "description": "Returns a list of all Clients in the api.\n"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Client"
+                            },
+                            "examples": {
+                                "Example of the client": {
+                                    "value": [
+                                        {
+                                            "name": "y",
+                                            "phone": "hdb",
+                                            "email": "0",
+                                            "bonus_level": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "clients"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Client"
+                                },
+                                "examples": {
+                                    "Example of the client": {
+                                        "value": "[\n    {\n        \"name\": \"mario\",\n        \"phone\": \"421424124\",\n        \"email\": \"ggwgqwgq@.com,\n        \"bonus_level\": \"5\"\n    }\n]"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return 201 to user when creation of new Client is succesful."
+                    }
+                },
+                "summary": "Post a new client.",
+                "description": "Returns a posted client."
             }
         },
         "/clients/{id}": {
@@ -119,6 +165,104 @@
                 "operationId": "id",
                 "summary": "Get the full details of a client",
                 "description": "Return full details of a given Client id."
+            },
+            "delete": {
+                "tags": [
+                    "clients"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "Id of the client to be deleted": {
+                                "value": "30"
+                            }
+                        },
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Example of deleted client": {
+                                        "value": [
+                                            [
+                                                "error",
+                                                "No content"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status 204 to the user if deletion of a Client has been succesful."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Client was not found": {
+                                        "value": [
+                                            [
+                                                "error",
+                                                "Client was not found"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status  code 404 to the user, if client with this id does not exist\n"
+                    }
+                },
+                "summary": "Deletes a certain id of the client."
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Client": {
+                "title": "Root Type for Client",
+                "description": "Data of Client datatype",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "bonus_level": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Mario Notch",
+                    "phone": "+228228228",
+                    "email": "mariobrather@bro.com",
+                    "bonus_level": "3"
+                }
             }
         }
     }

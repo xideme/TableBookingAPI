@@ -3,6 +3,7 @@ const port = 8080;
 
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./docs/swagger.json');
+var express = require('express')
 
 const clients = [
     { id: 1, name: "Mihhail Bajandin", phone: "+3725555555", email: "misha228@hz.ee", bonus_level: "5" },
@@ -27,6 +28,9 @@ const clients = [
     { id: 20, name: "Kristi Talve", phone: "+37270123456", email: "kristi.talve@ee.ee", bonus_level: "1" }
 ];
 
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(express.json());
+
 app.get('/clients', (req, res) => {
     res.send(clients)
 })
@@ -47,7 +51,41 @@ app.get('/clients/:id', (req, res) => {
     res.send(client);
 });
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.post('/clients', (req,res) => {
+    if (!req.body.name ||
+        !req.body.phone ||
+        !req.body.email ||
+        !req.body.bonus_level)
+        {
+            return res.status(400).send
+            ({error: 'One or multiple parameters are missing'});
+        }
+    let client = {
+        id: clients.length +1,
+        name: req.body.name,
+        phone: req.body.phone,
+        email: req.body.email,
+        bonus_level: req.body.bonus_level
+    }
+    clients.push(client);
+    res.status(201).location(`{$getBaseUrl(req)}/clients/${clients.length}`).send(client);
+})
+
+app.delete('/clients/:id', (req, res) => {
+    if(typeof clients[req.params.id-1] === 'undefined') 
+    {
+        return res.status(404).send({Error: 'Client not found'});
+    }
+
+    clients.splice(req.params.id-1, 1);
+
+    res.status(204).send({Error: 'No Content'});
+    
+})
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
+
+function getBaseUrl(req) {
+    return req.connection && req.connection.encrypted ? "https" : "http" + `://${req.headers.host}`;
+}
