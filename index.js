@@ -32,14 +32,20 @@ app.get('/clients', (req, res) => {
 })
 
 app.get('/clients/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
 
-    if(typeof clients[req.params.id - 1] == 'undefined')
-    {
-        return res.status(404).send({error: "Client not found"})
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
     }
 
-    res.send(clients[req.params.id - 1])
-})
+    const client = clients.find(client => client.id === id);
+
+    if (!client) {
+        return res.status(404).send({ error: "Client not found" });
+    }
+
+    res.send(client);
+});
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
