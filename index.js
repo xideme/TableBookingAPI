@@ -28,8 +28,23 @@ const clients = [
     { id: 20, name: "Kristi Talve", phone: "+37270123456", email: "kristi.talve@ee.ee", bonus_level: "1" }
 ];
 
+const reservations = [
+    { id: 1, client_id: 1, datetime: "03-12-2024", adult_count: 2, children_count: 0 },
+    { id: 2, client_id: 2, datetime: "04-12-2024", adult_count: 1, children_count: 1 },
+    { id: 3, client_id: 3, datetime: "05-12-2024", adult_count: 3, children_count: 2 },
+    { id: 4, client_id: 1, datetime: "06-12-2024", adult_count: 2, children_count: 0 },
+    { id: 5, client_id: 4, datetime: "07-12-2024", adult_count: 2, children_count: 1 },
+    { id: 6, client_id: 5, datetime: "08-12-2024", adult_count: 1, children_count: 0 },
+    { id: 7, client_id: 6, datetime: "09-12-2024", adult_count: 4, children_count: 3 },
+    { id: 8, client_id: 2, datetime: "10-12-2024", adult_count: 2, children_count: 2 },
+    { id: 9, client_id: 3, datetime: "11-12-2024", adult_count: 1, children_count: 0 },
+    { id: 10, client_id: 7, datetime: "12-12-2024", adult_count: 2, children_count: 1 }
+]
+
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
+
+// clients <---start--->
 
 app.get('/clients', (req, res) => {
     res.send(clients)
@@ -82,6 +97,66 @@ app.delete('/clients/:id', (req, res) => {
     res.status(204).send({Error: 'No Content'});
     
 })
+
+// clients <---end--->
+
+// reservations <---start--->
+
+app.get('/reservations', (req, res) => {
+    res.send(reservations);
+});
+
+app.get('/reservations/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
+
+    const reservation = reservations.find(reservation => reservation.id === id);
+
+    if (!reservation) {
+        return res.status(404).send({ error: "Reservation not found" });
+    }
+
+    res.send(reservation);
+});
+
+app.post('/reservations', (req, res) => {
+    if (!req.body.client_id ||
+        !req.body.datetime ||
+        !req.body.adult_count ||
+        !req.body.children_count)
+        {
+            return res.status(400).send
+            ({error: 'One or multiple parameters are missing'});
+        }
+
+    let reservation = {
+        id: reservations.length + 1,
+        client_id: req.body.client_id,
+        datetime: req.body.datetime,
+        adult_count: req.body.adult_count,
+        children_count: req.body.children_count
+    };
+
+    reservations.push(reservation);
+    res.status(201).location(`{$getBaseUrl(req)}/reservations/${reservations.id}`).send(reservation);
+});
+
+app.delete('/reservations/:id', (req, res) => {
+    if(typeof reservations[req.params.id-1] === 'undefined') 
+    {
+        return res.status(404).send({Error: 'Reservation not found'});
+    }
+
+    reservations.splice(req.params.id-1, 1);
+
+    res.status(204).send({Error: 'No Content'});
+    
+})
+
+// reservations <---end--->
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
