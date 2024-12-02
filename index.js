@@ -39,7 +39,20 @@ const reservations = [
     { id: 8, client_id: 2, datetime: "10-12-2024", adult_count: 2, children_count: 2 },
     { id: 9, client_id: 3, datetime: "11-12-2024", adult_count: 1, children_count: 0 },
     { id: 10, client_id: 7, datetime: "12-12-2024", adult_count: 2, children_count: 1 }
-]
+];
+
+const tables = [
+    { id: 1, reservation_id: 3, seats: 4 },
+    { id: 2, reservation_id: 2, seats: 4 },
+    { id: 3, reservation_id: 1, seats: 6 },
+    { id: 4, reservation_id: 7, seats: 4 },
+    { id: 5, reservation_id: 6, seats: 4 },
+    { id: 6, reservation_id: 8, seats: 2 },
+    { id: 7, reservation_id: 9, seats: 8 },
+    { id: 8, reservation_id: 4, seats: 6 },
+    { id: 9, reservation_id: 5, seats: 2 },
+    { id: 10, reservation_id: 10, seats: 4 }
+];
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
@@ -157,6 +170,50 @@ app.delete('/reservations/:id', (req, res) => {
 })
 
 // reservations <---end--->
+
+
+// Tables API
+app.get('/tables', (req, res) => {
+    res.send(tables);
+});
+
+app.get('/tables/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
+    const table = tables.find(table => table.id === id);
+    if (!table) {
+        return res.status(404).send({ error: "Table not found" });
+    }
+    res.send(table);
+});
+
+app.post('/tables', (req, res) => {
+    if (!req.body.reservation_id || !req.body.seats) {
+        return res.status(400).send({ error: 'One or multiple parameters are missing' });
+    }
+
+    let table = {
+        id: tables.length + 1,
+        reservation_id: req.body.reservation_id,
+        seats: req.body.seats
+    };
+
+    tables.push(table);
+    res.status(201).location(`/${getBaseUrl(req)}/tables/${table.id}`).send(table);
+});
+
+app.delete('/tables/:id', (req, res) => {
+    const tableIndex = tables.findIndex(table => table.id == req.params.id);
+    if (tableIndex === -1) {
+        return res.status(404).send({ error: 'Table not found' });
+    }
+    tables.splice(tableIndex, 1);
+    res.status(204).send();
+});
+
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});

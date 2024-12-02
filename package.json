@@ -1,7 +1,7 @@
 {
   "name": "tablebookingapi",
   "version": "1.0.0",
-  "description": "",
+  "description": "How to run\r - open terminal in backend project\r - npm init -y\r - npm install express\r - type command \"nodemon .\"\r - the project will open",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
