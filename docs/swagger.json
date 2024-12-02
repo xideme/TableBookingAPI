@@ -99,6 +99,23 @@
                     }
                 ],
                 "responses": {
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "Not found": {
+                                        "value": {
+                                            "error": "Client not found"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Client wasn't found in array"
+                    },
                     "200": {
                         "content": {
                             "application/json": {
@@ -136,15 +153,95 @@
                             }
                         },
                         "description": "ID was missing"
+                    }
+                },
+                "operationId": "id",
+                "summary": "Get the full details of a client",
+                "description": "Return full details of a given Client id."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "examples": {
+                                "Example of a client with a details": {
+                                    "value": {
+                                        "id": 1,
+                                        "name": "Original Name",
+                                        "phone": "+3725555555",
+                                        "email": "misha228@hz.ee",
+                                        "bonus_level": "5"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "clients"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "id": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "id",
+                        "description": "id of a client",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+
+                            }
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Example of modified client": {
+                                        "value": {
+                                            "id": 1,
+                                            "name": "Modified Name",
+                                            "phone": "+3725555555",
+                                            "email": "misha228@hz.ee",
+                                            "bonus_level": "5"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "A client has been successfully modified"
                     },
                     "404": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string"
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
                                 },
                                 "examples": {
-                                    "Not found": {
+                                    "Client wasnt found": {
                                         "value": {
                                             "error": "Client not found"
                                         }
@@ -152,12 +249,32 @@
                                 }
                             }
                         },
-                        "description": "Client wasn't found in array"
+                        "description": "Client wasnt found"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "ID was missing": {
+                                        "value": {
+                                            "Error": "Invalid client id"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "ID was missing"
                     }
                 },
                 "operationId": "id",
-                "summary": "Get the full details of a client",
-                "description": "Return full details of a given Client id."
+                "summary": "Modify existing client",
+                "description": "Modify single existing client"
             },
             "delete": {
                 "tags": [
@@ -227,6 +344,256 @@
                     }
                 },
                 "summary": "Deletes a certain id of the client."
+            }
+        },
+        "/reservations/{id}/": {
+            "get": {
+                "tags": [
+                    "reservations"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "id": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Full details of a reservation": {
+                                        "value": [
+                                            {
+                                                "id": 1,
+                                                "client_id": 1,
+                                                "datetime": "03-12-2024",
+                                                "adult_count": 2,
+                                                "children_count": 0
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns full details of a given reservation id"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Reservation wasnt found": {
+                                        "value": [
+                                            {
+                                                "error": "Reservation not found"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Reservation wasn't found in array"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+
+                                    }
+                                },
+                                "examples": {
+                                    "Reservation ID missing": {
+                                        "value": [
+                                            {
+                                                "error": "ID is missing or invalid"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "ID was missing"
+                    }
+                },
+                "summary": "Returns full details of a given Reservation id"
+            },
+            "delete": {
+                "tags": [
+                    "reservations"
+                ],
+                "responses": {
+                    "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Reservation was deleted": {
+                                        "value": [
+                                            [
+                                                "error",
+                                                "No content"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return 204 if the reservation was deleted"
+                    },
+                    "404": {
+
+                    }
+                },
+                "summary": "Delete a specified reservation"
+            }
+        },
+        "/reservations": {
+            "get": {
+                "tags": [
+                    "reservations"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of reservations": {
+                                        "value": [
+                                            [
+                                                "1",
+                                                "2"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "List of reservations"
+                    }
+                },
+                "summary": "Get a list of all reservations",
+                "description": "Returns a list of all Reservations in the api."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "examples": {
+                                "Example of a reservation": {
+                                    "value": {
+                                        "id": 1,
+                                        "client_id": 1,
+                                        "datetime": "03-12-2024",
+                                        "adult_count": 2,
+                                        "children_count": 0
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Reservation was created": {
+                                        "value": {
+                                            "id": 1,
+                                            "client_id": 1,
+                                            "datetime": "03-12-2024",
+                                            "adult_count": 2,
+                                            "children_count": 0
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return 201 to user when creation of new Reservation is succesful."
+                    }
+                },
+                "summary": "Create a new reservation",
+                "description": "Returns a created reservation"
+            }
+        },
+        "/tables/{id}/": {
+
+        },
+        "/tables": {
+            "get": {
+                "tags": [
+                    "tables"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of reservations": {
+                                        "value": [
+                                            [
+                                                "1",
+                                                "2"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "List of tables"
+                    }
+                },
+                "summary": "Get list of all tables"
             }
         }
     },
