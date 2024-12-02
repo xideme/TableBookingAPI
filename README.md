@@ -11,11 +11,8 @@ How to run
 
 ## Team Resources
 
-JIRA
-https://bookingtargv23.atlassian.net/jira/software/projects/TB/boards/1?atlOrigin=eyJpIjoiZmIxYjIwMGMwYmE0NDdhOGIwYzlmY2NjZTdjYTI5YzkiLCJwIjoiaiJ9
-
-Apicurio
-https://studio-ws.apicur.io/sharing/00d7d3a4-e248-43d2-b5b0-05ee50533857
+[![JIRA](https://upload.wikimedia.org/wikipedia/commons/8/8a/Jira_Logo.svg)](https://bookingtargv23.atlassian.net/jira/software/projects/TB/boards/1?atlOrigin=eyJpIjoiZmIxYjIwMGMwYmE0NDdhOGIwYzlmY2NjZTdjYTI5YzkiLCJwIjoiaiJ9)
+[![linkedin](https://www.apicur.io/images/subprojects/apicurio_studio_logo_default_h50px.png)](https://studio-ws.apicur.io/sharing/00d7d3a4-e248-43d2-b5b0-05ee50533857)
 
 
 
