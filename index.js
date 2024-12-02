@@ -210,7 +210,7 @@ app.delete('/tables/:id', (req, res) => {
         return res.status(404).send({ error: 'Table not found' });
     }
     tables.splice(tableIndex, 1);
-    res.status(204).send();
+    res.status(204).send({Error: 'No Content'});
 });
 
 
