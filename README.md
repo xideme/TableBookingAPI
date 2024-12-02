@@ -1,5 +1,11 @@
 # TableBookingAPI
- 
+
+This is a simple Node.js and Express-based REST API for managing a restaurant reservation system. 
+
+- Create, retrieve, and delete client information.
+- Create, view, and delete reservations for specific clients.
+- Assign tables to reservations and manage table availability.
+
 How to run
 - open terminal in backend project
 - npm init -y
