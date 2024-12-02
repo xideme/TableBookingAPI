@@ -81,7 +81,7 @@
         "/clients/{id}": {
             "get": {
                 "tags": [
-                    "details"
+                    "clients"
                 ],
                 "parameters": [
                     {
@@ -530,6 +530,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "reservations"
+                ],
                 "responses": {
                     "201": {
                         "content": {
