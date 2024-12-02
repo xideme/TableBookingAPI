@@ -111,6 +111,38 @@ app.delete('/clients/:id', (req, res) => {
     
 })
 
+
+// PUT /clients/:id - Update an existing client
+app.put('/clients/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
+
+    const clientIndex = clients.findIndex(client => client.id === id);
+
+    if (clientIndex === -1) {
+        return res.status(404).send({ error: "Client not found" });
+    }
+
+    const { name, phone, email, bonus_level } = req.body;
+
+    // Validate that at least one field is provided for updating
+    if (!name && !phone && !email && !bonus_level) {
+        return res.status(400).send({ error: "No fields provided for update" });
+    }
+
+    // Update the client's fields only if new values are provided
+    if (name) clients[clientIndex].name = name;
+    if (phone) clients[clientIndex].phone = phone;
+    if (email) clients[clientIndex].email = email;
+    if (bonus_level) clients[clientIndex].bonus_level = bonus_level;
+
+    res.status(200).send(clients[clientIndex]);
+});
+
+
 // clients <---end--->
 
 // reservations <---start--->
