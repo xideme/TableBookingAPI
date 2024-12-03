@@ -201,6 +201,37 @@ app.delete('/reservations/:id', (req, res) => {
     
 })
 
+// PUT /reservations/:id - Update an existing reservation
+app.put('/reservations/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
+
+    const reservationIndex = reservations.findIndex(reservation => reservation.id === id);
+
+    if (reservationIndex === -1) {
+        return res.status(404).send({ error: "Reservation not found" });
+    }
+
+    const { client_id, datetime, adult_count, children_count } = req.body;
+
+    // Validate that at least one field is provided for updating
+    if (!client_id && !datetime && !adult_count && !children_count) {
+        return res.status(400).send({ error: "No fields provided for update" });
+    }
+
+    // Update the reservation fields only if new values are provided
+    if (client_id) reservations[reservationIndex].client_id = client_id;
+    if (datetime) reservations[reservationIndex].datetime = datetime;
+    if (adult_count) reservations[reservationIndex].adult_count = adult_count;
+    if (children_count) reservations[reservationIndex].children_count = children_count;
+
+    res.status(200).send(reservations[reservationIndex]);
+});
+
+
 // reservations <---end--->
 
 
