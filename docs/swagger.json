@@ -496,7 +496,7 @@
                     "required": true
                 },
                 "tags": [
-                    "table"
+                    "tables"
                 ],
                 "responses": {
                     "201": {
@@ -650,6 +650,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "reservations"
+                ],
                 "parameters": [
                     {
                         "examples": {
@@ -908,6 +911,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "tables"
+                ],
                 "parameters": [
                     {
                         "examples": {
