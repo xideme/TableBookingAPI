@@ -276,6 +276,34 @@ app.delete('/tables/:id', (req, res) => {
     res.status(204).send({Error: 'No Content'});
 });
 
+// PUT /tables/:id - Update an existing table
+app.put('/tables/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
+
+    const tableIndex = tables.findIndex(table => table.id === id);
+
+    if (tableIndex === -1) {
+        return res.status(404).send({ error: "Table not found" });
+    }
+
+    const { reservation_id, seats } = req.body;
+
+
+    if (!reservation_id && !seats) {
+        return res.status(400).send({ error: "No fields provided for update" });
+    }
+
+    if (reservation_id) tables[tableIndex].reservation_id = reservation_id;
+    if (seats) tables[tableIndex].seats = seats;
+
+    res.status(200).send(tables[tableIndex]);
+});
+
+
 
 
 app.listen(port, () => {console.log
