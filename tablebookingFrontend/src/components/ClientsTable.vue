@@ -1,24 +1,35 @@
+<script>
+export default {
+    name: "ClientsTable",
+    props: {
+        items: Array
+    }
+}
+</script>
+
 <template>    
     <body>
-        <table id="clientsTable" class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Client name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Bonus level</th>
-                </tr>
-            </thead>
-            <tr>
-                <th>Charlie Chaplin</th>
-                <th>+372445453</th>
-                <th>charlie.c@email.com</th>
-                <th>4</th>
+                <th>Client Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Bonus Level</th>
             </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in items" v-bind:key="item.id">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.bonus_level }}</td>
+                </tr>
+            </tbody>
+            
         </table>
     </body>
 </template>
 
-<style>
-
+<style scoped>
 </style>
