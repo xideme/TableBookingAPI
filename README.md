@@ -10,11 +10,8 @@ This is a simple Node.js and Express-based REST API for managing a restaurant re
 
 How to run
 - open terminal in backend project
-- npm init -y
-- npm install express
-- type command "nodemon ."
+- npm install -y | npm run dev
 - the project will open
-
 
 
 ## Team Resources
