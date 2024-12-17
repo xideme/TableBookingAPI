@@ -23,8 +23,9 @@ const sequelize = new Sequelize(
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.clients = require("./models/Client")(sequelize, DataTypes);
-db.users = require("./models/user")(sequelize, DataTypes);
+db.clients = require("./models/clients")(sequelize, DataTypes);
+db.reservations = require("./models/reservations")(sequelize, DataTypes);
+db.tables = require("./models/tables")(sequelize, DataTypes);
 
 const sync = async () => {
     await sequelize.sync({ alter: true });
