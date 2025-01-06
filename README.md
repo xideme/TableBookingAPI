@@ -8,25 +8,29 @@ This is a simple Node.js and Express-based REST API for managing a restaurant re
 - Create, view, and delete reservations for specific clients.
 - Assign tables to reservations and manage table availability.
 
+
 To run backend/frontend, we need to install some packages to the project.
 Here is some steps, if you want to launch the project.
 
-How to run backend
+Running backend part
 - open terminal in 'backend' folder
 - type 'npm install express'
 - type 'node .'
 - backend should be launched
 
-How to run frontend
+
+Running frontend part
 - open terminal in 'tablebookingFrontend' folder
 - type 'npm install express'
 - type 'npm run dev'
 - frontend should be launched
 
+
 How to start backend & frontend with one script(IF YOU MANAGED TO INSTALL PACKAGES TO backend & frontend)
 - open terminal in project itself
 - try to type 'npm start'
 - both parts of ends shoulb be launched 😊
+
 
 ## Team Resources
 
