@@ -27,7 +27,9 @@ Running frontend part
 
 
 How to start backend & frontend with one script(IF YOU MANAGED TO INSTALL PACKAGES TO backend & frontend)
-- open terminal in project itself
+- open terminal in the project itself
+- make sure, that you are in the '.\TableBookingAPI' position
+- install node_modules by typing 'npm install'
 - try to type 'npm start'
 - both parts of ends shoulb be launched 😊
 
