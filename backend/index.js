@@ -254,6 +254,10 @@ app.post('/tables', (req, res) => {
 
 app.delete('/tables/:id', (req, res) => {
     const tableIndex = tables.findIndex(table => table.id == req.params.id);
+    if (tableIndex === -1) {
+        return res.status(404).send({ error: 'Table not found' });
+    }
+    
 
 
 
