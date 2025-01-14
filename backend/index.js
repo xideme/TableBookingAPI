@@ -145,8 +145,12 @@ app.get('/reservations', (req, res) => {
 app.get('/reservations/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
 
+    if (isNaN(id)) {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
 
     
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
