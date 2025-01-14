@@ -237,6 +237,11 @@ app.get('/tables/:id', (req, res) => {
 });
 
 
+app.post('/tables', (req, res) => {
+    if (!req.body.reservation_id || !req.body.seats)
+        
+
+
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
 
