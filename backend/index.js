@@ -268,7 +268,15 @@ app.put('/tables/:id', (req, res) => {
     if (isNaN(id)) {
         return res.status(400).send({ error: "ID is missing or invalid" });
     }
+
+    const tableIndex = tables.findIndex(table => table.id === id);
+    if (tableIndex === -1) {
+        return res.status(404).send({ error: "Table not found" });
+    }
+
+
     
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
