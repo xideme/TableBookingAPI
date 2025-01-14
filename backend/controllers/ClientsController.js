@@ -59,3 +59,11 @@ async (req, res) => {
     .send(client);
 }
 
+exports.deleteById = 
+async (req, res) => {
+    const client = await getClient(req, res);
+    if(!client) {return}
+    await client.destroy();
+    res.status(204).send({Error: 'No Content'});
+}
+
