@@ -63,9 +63,12 @@ app.get('/clients', (req, res) => {
     res.send(clients)
 })
 
+app.get('/clients/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
 
 
 
+    
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
 
