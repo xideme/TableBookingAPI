@@ -180,9 +180,11 @@ app.post('/reservations', (req, res) => {
 
 app.delete('/reservations/:id', (req, res) => {
     if(typeof reservations[req.params.id-1] === 'undefined') 
+    {
+        return res.status(404).send({Error: 'Reservation not found'});
+    }
 
 
-        
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
