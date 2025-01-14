@@ -38,3 +38,24 @@ const createdClient = await db.clients.create(newClient);
     .send(createdClient);
 }
 
+exports.editById = 
+async (req, res) => {
+    const client = await getClient(req, res);
+    if (!client) {return}
+    if (!req.body.name || 
+        !req.body.phone || 
+        !req.body.email || 
+        !req.body.bonus_level) 
+        {
+            return res.status(400).send({error: 'Missing one or all parameters'});
+        }
+    client.name = req.body.name;
+    client.phone = req.body.phone;
+    client.email = req.body.email;
+    client.bonus_level = req.body.bonus_level;
+    await client.save();
+    return res
+    .location(`${Utils.getBaseUrl(req)}/clients/${client.id}`)
+    .send(client);
+}
+
