@@ -123,6 +123,18 @@ app.put('/clients/:id', (req, res) => {
     }
     const { name, phone, email, bonus_level } = req.body;
 
+    // Validate that at least one field is provided for updating
+    if (!name && !phone && !email && !bonus_level) {
+        return res.status(400).send({ error: "No fields provided for update" });
+    }
+    // Update the client's fields only if new values are provided
+    if (name) clients[clientIndex].name = name;
+    if (phone) clients[clientIndex].phone = phone;
+    if (email) clients[clientIndex].email = email;
+    if (bonus_level) clients[clientIndex].bonus_level = bonus_level;
+    res.status(200).send(clients[clientIndex]);
+});
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
