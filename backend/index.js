@@ -70,6 +70,14 @@ app.get('/clients/:id', (req, res) => {
         return res.status(400).send({ error: "ID is missing or invalid" });
     }
 
+    const client = clients.find(client => client.id === id);
+    if (!client) {
+        return res.status(404).send({ error: "Client not found" });
+    }
+    res.send(client);
+});
+
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
