@@ -261,6 +261,10 @@ app.delete('/tables/:id', (req, res) => {
     res.status(204).send({Error: 'No Content'});
 });
 
+// PUT /tables/:id - Update an existing table
+app.put('/tables/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
 
 
 app.listen(port, () => {console.log
