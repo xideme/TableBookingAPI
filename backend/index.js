@@ -226,6 +226,9 @@ app.get('/tables', (req, res) => {
 app.get('/tables/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id))
+    {
+        return res.status(400).send({ error: "ID is missing or invalid" });
+    }
 
 
 
