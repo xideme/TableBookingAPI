@@ -229,7 +229,12 @@ app.get('/tables/:id', (req, res) => {
     {
         return res.status(400).send({ error: "ID is missing or invalid" });
     }
-
+    const table = tables.find(table => table.id === id);
+    if (!table) {
+        return res.status(404).send({ error: "Table not found" });
+    }
+    res.send(table);
+});
 
 
 app.listen(port, () => {console.log
