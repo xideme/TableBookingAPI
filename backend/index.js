@@ -161,6 +161,10 @@ app.post('/reservations', (req, res) => {
         !req.body.datetime ||
         !req.body.adult_count ||
         !req.body.children_count)
+        {
+            return res.status(400).send
+            ({error: 'One or multiple parameters are missing'});
+        }
 
 
 app.listen(port, () => {console.log
