@@ -156,6 +156,12 @@ app.get('/reservations/:id', (req, res) => {
     res.send(reservation);
 });
 
+app.post('/reservations', (req, res) => {
+    if (!req.body.client_id ||
+        !req.body.datetime ||
+        !req.body.adult_count ||
+        !req.body.children_count)
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
