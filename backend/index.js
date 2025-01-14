@@ -243,6 +243,15 @@ app.post('/tables', (req, res) => {
             return res.status(400).send({ error: 'One or multiple parameters are missing' });
         } 
 
+    let table = {
+        id: tables.length + 1,
+        reservation_id: req.body.reservation_id,
+        seats: req.body.seats
+    };
+    tables.push(table);
+    res.status(201).location(`/${getBaseUrl(req)}/tables/${table.id}`).send(table);
+});
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
