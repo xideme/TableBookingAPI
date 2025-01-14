@@ -66,3 +66,18 @@ async (req, res) => {
     await reservation.destroy();
     res.status(204).send({Error: 'No Content'});
 }
+
+const getReservation = 
+async (req, res) => {
+    const idNumber = parseInt(req.params.id);
+    if(isNaN(idNumber)) {
+        res.status(400).send({Error: `ID must be a whole number: ${idNumber}`});
+        return null;
+    }
+    const reservation = await db.reservations.findByPk(idNumber);
+    if(!reservation) {
+        res.status(404).send({Error: `reservation with this id not found: ${idNumber}`});
+        return null;
+    }
+    return reservation;
+}
