@@ -218,6 +218,11 @@ app.put('/reservations/:id', (req, res) => {
 });
 // reservations <---end--->
 
+// Tables API
+app.get('/tables', (req, res) => {
+    res.send(tables);
+});
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
