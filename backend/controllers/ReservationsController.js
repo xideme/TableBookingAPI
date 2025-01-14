@@ -37,3 +37,24 @@ const createdReservation = await db.reservations.create(newReservation);
     .location(`${Utils.getBaseUrl(req)}/reservations/${createdReservation.id}`)
     .send(createdReservation);
 }
+
+exports.editById = 
+async (req, res) => {
+    const reservation = await getReservation(req, res);
+    if (!reservation) {return}
+    if (!req.body.client_id || 
+        !req.body.datetime || 
+        !req.body.adult_count || 
+        !req.body.children_count) 
+        {
+            return res.status(400).send({error: 'Missing one or all parameters'});
+        }
+    reservation.client_id = req.body.client_id;
+    reservation.datetime = req.body.datetime;
+    reservation.adult_count = req.body.adult_count;
+    reservation.children_count = req.body.children_count;
+    await reservation.save();
+    return res
+    .location(`${Utils.getBaseUrl(req)}/reservations/${reservation.id}`)
+    .send(reservation);
+}
