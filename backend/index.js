@@ -77,6 +77,12 @@ app.get('/clients/:id', (req, res) => {
     res.send(client);
 });
 
+app.post('/clients', (req,res) => {
+    if (!req.body.name ||
+        !req.body.phone ||
+        !req.body.email ||
+        !req.body.bonus_level)
+
 
 
 app.listen(port, () => {console.log
