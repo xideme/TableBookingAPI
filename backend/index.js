@@ -86,6 +86,19 @@ app.post('/clients', (req,res) => {
             return res.status(400).send
             ({error: 'One or multiple parameters are missing'});
         }
+    
+    let client = {
+        id: clients.length +1,
+        name: req.body.name,
+        phone: req.body.phone,
+        email: req.body.email,
+        bonus_level: req.body.bonus_level
+    }
+    clients.push(client);
+    res.status(201).location(`{$getBaseUrl(req)}/clients/${clients.length}`).send(client);
+})
+    
+
 
 
 app.listen(port, () => {console.log
