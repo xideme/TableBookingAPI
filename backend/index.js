@@ -135,6 +135,13 @@ app.put('/clients/:id', (req, res) => {
     res.status(200).send(clients[clientIndex]);
 });
 
+// clients <---end--->
+
+// reservations <---start--->
+app.get('/reservations', (req, res) => {
+    res.send(reservations);
+});
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
