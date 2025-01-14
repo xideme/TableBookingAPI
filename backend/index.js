@@ -252,6 +252,10 @@ app.post('/tables', (req, res) => {
     res.status(201).location(`/${getBaseUrl(req)}/tables/${table.id}`).send(table);
 });
 
+app.delete('/tables/:id', (req, res) => {
+    const tableIndex = tables.findIndex(table => table.id == req.params.id);
+
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
