@@ -98,6 +98,9 @@ app.post('/clients', (req,res) => {
     res.status(201).location(`{$getBaseUrl(req)}/clients/${clients.length}`).send(client);
 })
     
+app.delete('/clients/:id', (req, res) => {
+    if(typeof clients[req.params.id-1] === 'undefined') 
+        
 
 
 
