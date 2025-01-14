@@ -283,11 +283,6 @@ app.put('/tables/:id', (req, res) => {
     res.status(200).send(tables[tableIndex]);
 });
 
-
-
-
-
-
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
 
