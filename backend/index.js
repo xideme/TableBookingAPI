@@ -82,7 +82,10 @@ app.post('/clients', (req,res) => {
         !req.body.phone ||
         !req.body.email ||
         !req.body.bonus_level)
-
+        {
+            return res.status(400).send
+            ({error: 'One or multiple parameters are missing'});
+        }
 
 
 app.listen(port, () => {console.log
