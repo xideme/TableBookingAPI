@@ -108,7 +108,10 @@ app.delete('/clients/:id', (req, res) => {
     res.status(204).send({Error: 'No Content'});
     
 })
-    
+   
+// PUT /clients/:id - Update an existing client
+app.put('/clients/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
 
 
 app.listen(port, () => {console.log
