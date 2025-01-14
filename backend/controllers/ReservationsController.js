@@ -58,3 +58,11 @@ async (req, res) => {
     .location(`${Utils.getBaseUrl(req)}/reservations/${reservation.id}`)
     .send(reservation);
 }
+
+exports.deleteById = 
+async (req, res) => {
+    const reservation = await getReservation(req, res);
+    if(!reservation) {return}
+    await reservation.destroy();
+    res.status(204).send({Error: 'No Content'});
+}
