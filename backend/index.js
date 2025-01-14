@@ -142,6 +142,11 @@ app.get('/reservations', (req, res) => {
     res.send(reservations);
 });
 
+app.get('/reservations/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+
+    
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
