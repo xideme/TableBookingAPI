@@ -198,6 +198,12 @@ app.put('/reservations/:id', (req, res) => {
         return res.status(400).send({ error: "ID is missing or invalid" });
     }
 
+    const reservationIndex = reservations.findIndex(reservation => reservation.id === id);
+    if (reservationIndex === -1) {
+        return res.status(404).send({ error: "Reservation not found" });
+    }
+    const { client_id, datetime, adult_count, children_count } = req.body;
+
     
 
 app.listen(port, () => {console.log
