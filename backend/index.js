@@ -239,7 +239,9 @@ app.get('/tables/:id', (req, res) => {
 
 app.post('/tables', (req, res) => {
     if (!req.body.reservation_id || !req.body.seats)
-        
+        {
+            return res.status(400).send({ error: 'One or multiple parameters are missing' });
+        } 
 
 
 app.listen(port, () => {console.log
