@@ -189,6 +189,13 @@ app.delete('/reservations/:id', (req, res) => {
     
 })
 
+
+// PUT /reservations/:id - Update an existing reservation
+app.put('/reservations/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    
+
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
 
