@@ -58,6 +58,10 @@ app.use(cors());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
 
+// clients <---start--->
+app.get('/clients', (req, res) => {
+    res.send(clients)
+})
 
 
 
