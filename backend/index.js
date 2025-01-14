@@ -204,7 +204,20 @@ app.put('/reservations/:id', (req, res) => {
     }
     const { client_id, datetime, adult_count, children_count } = req.body;
 
-    
+
+    // Validate that at least one field is provided for updating
+    if (!client_id && !datetime && !adult_count && !children_count) {
+        return res.status(400).send({ error: "No fields provided for update" });
+    }
+    // Update the reservation fields only if new values are provided
+    if (client_id) reservations[reservationIndex].client_id = client_id;
+    if (datetime) reservations[reservationIndex].datetime = datetime;
+    if (adult_count) reservations[reservationIndex].adult_count = adult_count;
+    if (children_count) reservations[reservationIndex].children_count = children_count;
+    res.status(200).send(reservations[reservationIndex]);
+});
+// reservations <---end--->
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
