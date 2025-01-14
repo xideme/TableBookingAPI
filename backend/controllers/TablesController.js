@@ -34,3 +34,20 @@ const createdTable = await db.tables.create(newTable);
     .location(`${Utils.getBaseUrl(req)}/tables/${createdTable.id}`)
     .send(createdTable);
 }
+
+exports.editById = 
+async (req, res) => {
+    const table = await getTable(req, res);
+    if (!table) {return}
+    if (!req.body.reservation_id || 
+        !req.body.seats) 
+        {
+            return res.status(400).send({error: 'Missing one or all parameters'});
+        }
+    table.reservation_id = req.body.reservation_id;
+    table.seats = req.body.seats;
+    await table.save();
+    return res
+    .location(`${Utils.getBaseUrl(req)}/tables/${table.id}`)
+    .send(table);
+}
