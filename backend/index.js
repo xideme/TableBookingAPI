@@ -117,7 +117,11 @@ app.put('/clients/:id', (req, res) => {
         return res.status(400).send({ error: "ID is missing or invalid" });
     }
 
-    
+    const clientIndex = clients.findIndex(client => client.id === id);
+    if (clientIndex === -1) {
+        return res.status(404).send({ error: "Client not found" });
+    }
+    const { name, phone, email, bonus_level } = req.body;
 
 
 app.listen(port, () => {console.log
