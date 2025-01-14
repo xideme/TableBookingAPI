@@ -16,3 +16,21 @@ async (req, res) => {
     if (!table) { return res.status(404).send({Error: 'Table not found'});}
     res.send(table);
 }
+
+exports.create =
+async (req, res) => {
+    if (!req.body.reservation_id || 
+        !req.body.seats) 
+        {
+            return res.status(400).send({error: 'Missing one or all parameters'});
+        }
+const newTable = {
+    reservation_id: req.body.reservation_id,
+    seats: req.body.seats
+}
+const createdTable = await db.tables.create(newTable);
+    return res
+    .status(201)
+    .location(`${Utils.getBaseUrl(req)}/tables/${createdTable.id}`)
+    .send(createdTable);
+}
