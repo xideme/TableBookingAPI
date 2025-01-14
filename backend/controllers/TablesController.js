@@ -51,3 +51,11 @@ async (req, res) => {
     .location(`${Utils.getBaseUrl(req)}/tables/${table.id}`)
     .send(table);
 }
+
+exports.deleteById = 
+async (req, res) => {
+    const table = await getTable(req, res);
+    if(!table) {return}
+    await table.destroy();
+    res.status(204).send({Error: 'No Content'});
+}
