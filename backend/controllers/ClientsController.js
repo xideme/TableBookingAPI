@@ -8,3 +8,10 @@ async (req, res) => {
     .send(clients
         .map(({id, name}) => {return id, name}));
 }
+
+exports.getById =
+async (req, res) => {
+    const client = await getClient(req, res);
+    if (!client) { return res.status(404).send({Error: 'Client not found'});}
+    res.send(client);
+}
