@@ -178,6 +178,12 @@ app.post('/reservations', (req, res) => {
     });
 
 
+app.delete('/reservations/:id', (req, res) => {
+    if(typeof reservations[req.params.id-1] === 'undefined') 
+
+
+        
+
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
 
