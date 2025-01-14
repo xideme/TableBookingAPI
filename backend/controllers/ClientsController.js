@@ -67,3 +67,17 @@ async (req, res) => {
     res.status(204).send({Error: 'No Content'});
 }
 
+const getClient = 
+async (req, res) => {
+    const idNumber = parseInt(req.params.id);
+    if(isNaN(idNumber)) {
+        res.status(400).send({Error: `ID must be a whole number: ${idNumber}`});
+        return null;
+    }
+    const client = await db.clients.findByPk(idNumber);
+    if(!client) {
+        res.status(404).send({Error: `client with this id not found: ${idNumber}`});
+        return null;
+    }
+    return client;
+}
