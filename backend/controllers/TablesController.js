@@ -59,3 +59,18 @@ async (req, res) => {
     await table.destroy();
     res.status(204).send({Error: 'No Content'});
 }
+
+const getTable = 
+async (req, res) => {
+    const idNumber = parseInt(req.params.id);
+    if(isNaN(idNumber)) {
+        res.status(400).send({Error: `ID must be a whole number: ${idNumber}`});
+        return null;
+    }
+    const table = await db.tables.findByPk(idNumber);
+    if(!table) {
+        res.status(404).send({Error: `table with this id not found: ${idNumber}`});
+        return null;
+    }
+    return table;
+}
