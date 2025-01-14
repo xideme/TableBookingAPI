@@ -223,6 +223,11 @@ app.get('/tables', (req, res) => {
     res.send(tables);
 });
 
+app.get('/tables/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id))
+
+
 
 app.listen(port, () => {console.log
 (`Backend api address: http://localhost:${port}`);});
