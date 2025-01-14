@@ -149,7 +149,12 @@ app.get('/reservations/:id', (req, res) => {
         return res.status(400).send({ error: "ID is missing or invalid" });
     }
 
-    
+    const reservation = reservations.find(reservation => reservation.id === id);
+    if (!reservation) {
+        return res.status(404).send({ error: "Reservation not found" });
+    }
+    res.send(reservation);
+});
 
 
 app.listen(port, () => {console.log
