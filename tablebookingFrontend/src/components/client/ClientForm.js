@@ -7,21 +7,22 @@ export default {
         </tr>
         <tr>
             <th>Name</th>
-            <th></th>
+            <th><input :value="name" @input="$emit('update:name', $event.target.value)"/></th>
         </tr>
         <tr>
-            <th>Name</th>
-            <th>{{clientInModal.phone}}</th>
+            <th>phone</th>
+            <th><input :value="phone" @input="$emit('update:phone', $event.target.value)"/></th>
         </tr>
         <tr>
-            <th>Name</th>
-            <th>{{clientInModal.email}}</th>
+            <th>email</th>
+            <th><input :value="email" @input="$emit('update:email', $event.target.value)"/></th>
         </tr>
         <tr>
-            <th>Name</th>
-            <th>{{clientInModal.bonus_level}}</th>
+            <th>bonus_level</th>
+            <th><input :value="bonus_level" @input="$emit('update:bonus_level', $event.target.value)"/></th>
         </tr>
     </table>
     `,
-    props: ["clientInModal"]
+    props: ["id", "name", "phone", "email", "bonus_level"],
+    emits: ["update:name", "update:phone", "update:email", "update:bonus_level"]
 }

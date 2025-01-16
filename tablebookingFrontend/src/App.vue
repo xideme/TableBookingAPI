@@ -14,12 +14,12 @@ import CountInteger from './components/CountInteger.vue'
     width="125" 
     height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <CountInteger />
+    <div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/clients">Clients</RouterLink>
+        <RouterLink to="/reservations">Reservations</RouterLink>
+        <RouterLink to="/tables">Tables</RouterLink>
       </nav>
     </div>
   </header>

@@ -1,5 +1,11 @@
+<script>
 export default {
-    template: `
+    
+    props: ["clientInModal"]
+}
+</script>
+
+<template>
     <table class="table table-striped">
         <tr>
             <th>Id</th>
@@ -18,10 +24,8 @@ export default {
             <th>{{clientInModal.email}}</th>
         </tr>
         <tr>
-            <th>Bonus_level</th>
+            <th>Bonus level</th>
             <th>{{clientInModal.bonus_level}}</th>
         </tr>
     </table>
-    `,
-    props: ["clientInModal"]
-}
+</template>

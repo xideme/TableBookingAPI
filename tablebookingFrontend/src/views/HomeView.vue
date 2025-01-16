@@ -15,6 +15,6 @@ export default {
 
 <template>
   <div>
-    <ClientsTable :items="allClients"  />
+    
   </div>
 </template>
