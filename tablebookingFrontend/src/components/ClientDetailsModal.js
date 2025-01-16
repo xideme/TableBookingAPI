@@ -1,6 +1,6 @@
 import clientDetails from "./client/ClientDetails";
 import clientForm from "./client/ClientForm";
-import confirmationModal from "./confirmationModal";
+import confirmationModal from "./ConfirmationModal";
 
 export default {
     template: `
