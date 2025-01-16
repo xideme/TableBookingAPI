@@ -1,10 +1,12 @@
-const port = process.env.PORT || 3060;
+require('dotenv').config;
+const port = process.env.PORT || 8080;
 const host = 'localhost';
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../docs/swagger.json');
 const express = require('express');
-const app = require('express')()
+const app = require('express')();
+const { sync } = require('./db')
 
 // const clients = [
 //     { id: 1, name: "Mihhail Bajandin", phone: "+3725555555", email: "misha228@hz.ee", bonus_level: "5" },
@@ -289,8 +291,4 @@ require("./routes/clientRoutes")(app)
 
 app.listen(port, async () => {
     if (process.env.SYNC === 'true') {await sync();}
-    console.log(`Backend api jookseb aadressil: http://${host}:${port}`);})
-
-// function getBaseUrl(req) {
-//     return req.connection && req.connection.encrypted ? "https" : "http" + `://${req.headers.host}`;
-// }
+    console.log(`Backend api jookseb aadressil: http://${host}:${port}`);});
