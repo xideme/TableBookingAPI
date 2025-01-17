@@ -33,3 +33,7 @@ const sync = async () => {
 };
 
 module.exports = { db, sync };
+console.log(process.env.DB_DATANAME);
+console.log(process.env.DB_HOSTNAME);
+console.log(process.env.DB_USERNAME);
+console.log(process.env.DB_PASSWORD);
