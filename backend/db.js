@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize(
@@ -12,14 +11,14 @@ const sequelize = new Sequelize(
     }
 );
 
-(async () => {
+async () => {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully');
     } catch (error) {
         console.log("Unable to connect: " + error);
     }
-})();
+};
 
 const db = {};
 db.Sequelize = Sequelize;
