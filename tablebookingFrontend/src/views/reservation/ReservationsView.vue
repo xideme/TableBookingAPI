@@ -1,5 +1,5 @@
 <script>
-import ReservationsTable from '../components/ReservationsTable.vue';
+import ReservationsTable from '../../components/ReservationsTable.vue';
 export default{
     name: "ReservationsView",
     components: { ReservationsTable },

@@ -1,5 +1,5 @@
 <script>
-import TablesTable from '../components/TablesTable.vue';
+import TablesTable from '../../components/TablesTable.vue';
 export default{
     name: "TablesView",
     components: { TablesTable },

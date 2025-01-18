@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import ClientsView from '@/views/ClientsView.vue';
-import ReservationsView from '@/views/ReservationsView.vue';
-import TablesView from '@/views/TablesView.vue';
-import ClientsAdd from '@/views/ClientsAdd.vue';
-import ReservationsAdd from '@/views/ReservationsAdd.vue';
-import TablesAdd from '@/views/TablesAdd.vue';
+import ClientsView from '@/views/client/ClientsView.vue';
+import ReservationsView from '@/views/reservation/ReservationsView.vue';
+import TablesView from '@/views/table/TablesView.vue';
+import ClientsAdd from '@/views/client/ClientsAdd.vue';
+import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
+import TablesAdd from '@/views/table/TablesAdd.vue';
 
 
 const router = createRouter({

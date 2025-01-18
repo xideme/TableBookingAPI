@@ -1,5 +1,5 @@
 <script>
-import ClientsTable from '../components/ClientsTable.vue';
+import ClientsTable from '../../components/ClientsTable.vue';
 
 export default {
     name: "ClientsView",
