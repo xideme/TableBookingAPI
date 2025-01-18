@@ -2,9 +2,33 @@
 export default {
     name: "ClientsTable",
     props: {
-        items: Array
-    }
-}
+        items: Array,
+    },
+    methods: {
+        async deleteClient(clientID) {
+            const confirmation = confirm("Are you sure you want to delete this client?");
+            if (!confirmation) return;
+
+            try {
+                const response = await fetch(`http://localhost:8080/clients/${clientID}`, {
+                    method: "DELETE",
+                });
+                if (!response.ok) {
+                    throw new Error(`Failed to delete client. Status: ${response.status}`);
+                }
+                // Remove the deleted client from the local items array
+                const index = this.items.findIndex(client => client.id === clientID);
+                if (index !== -1) {
+                    this.items.splice(index, 1);
+                }
+                alert("Client deleted successfully.");
+            } catch (error) {
+                console.error("Error deleting client:", error);
+                alert("Failed to delete the client. Please try again.");
+            }
+        },
+    },
+};
 </script>
 
 <template>    
@@ -25,7 +49,17 @@ export default {
                     <td>{{ item.phone }}</td>
                     <td>{{ item.email }}</td>
                     <td>{{ item.bonus_level }}</td>
-                    <td></td>
+                    <td>
+                        <router-link :to="`/clients/${item.id}`" class="btn">
+                            Details
+                        </router-link>
+                        <router-link :to="`/clients/UpdateClient/${item.id}`" class="btn">
+                            Update
+                        </router-link>
+                        <button @click="deleteClient(item.id)" class="btn">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             </tbody>
             
