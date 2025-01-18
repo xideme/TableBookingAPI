@@ -289,8 +289,11 @@ app.use(cors(
     {
         origin: 'http://localhost:5173',
     }));
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(express.json());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.get('/', (req, res) => res.send(`Backend is running. Documentation is available <a href="http://${host}:${port}/docs">HERE</a>`))
 
 require("./routes/clientRoutes")(app)
 require("./routes/tableRoutes")(app)

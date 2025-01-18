@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Reservations = sequelize.define('Reservations', {
+    const Reservation = sequelize.define('Reservation', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -27,5 +27,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    return Reservations;
+    return Reservation;
 };

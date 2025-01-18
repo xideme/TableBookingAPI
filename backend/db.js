@@ -7,7 +7,8 @@ const sequelize = new Sequelize(
     {
         host: process.env.DB_HOSTNAME,
         dialect: 'mariadb',
-        logging: console.log
+        logging: console.log,
+        
     }
 );
 
@@ -23,9 +24,10 @@ async () => {
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.clients = require("./models/clients.js")(sequelize, DataTypes);
-db.reservations = require("./models/reservations.js")(sequelize, DataTypes);
-db.tables = require("./models/tables.js")(sequelize, DataTypes);
+
+db.Client = require("./models/Client.js")(sequelize, DataTypes);
+db.Reservation = require("./models/Reservation.js")(sequelize, DataTypes);
+db.Table = require("./models/Table.js")(sequelize, DataTypes);
 
 const sync = async () => {
     await sequelize.sync({ alter: true });
