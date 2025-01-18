@@ -16,7 +16,7 @@ export default {
                 if (!response.ok) {
                     throw new Error(`Failed to delete client. Status: ${response.status}`);
                 }
-                // Remove the deleted client from the local items array
+
                 const index = this.items.findIndex(client => client.id === clientID);
                 if (index !== -1) {
                     this.items.splice(index, 1);
@@ -32,7 +32,6 @@ export default {
 </script>
 
 <template>    
-    <body>
         <table class="client-table">
             <thead class="client-thead">
                 <tr>
@@ -53,7 +52,7 @@ export default {
                         <router-link :to="`/clients/${item.id}`" class="btn">
                             Details
                         </router-link>
-                        <router-link :to="`/clients/UpdateClient/${item.id}`" class="btn">
+                        <router-link :to="`/clients/update/${item.id}`" class="btn">
                             Update
                         </router-link>
                         <button @click="deleteClient(item.id)" class="btn">
@@ -64,7 +63,6 @@ export default {
             </tbody>
             
         </table>
-    </body>
 </template>
 
 <style scoped>

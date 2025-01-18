@@ -33,13 +33,5 @@ export default {
 </template>
 
 <style scoped>
-.btn {
-  margin-top: 20px;
-  padding: 5px 10px;
-  background-color: #1eff56;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+
 </style>

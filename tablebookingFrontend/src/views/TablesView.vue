@@ -16,6 +16,7 @@ export default{
 
 <template>
     <main>
+        <router-link to="/tables/create" class="btn">Add New Table</router-link>
         <TablesTable :items=allTables />
     </main>
 </template>

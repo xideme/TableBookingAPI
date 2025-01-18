@@ -22,8 +22,8 @@
     </div>
 
     <button class="submitBtn" @click="submitClient">Submit</button>
+    <router-link to="/clients">Back to Clients</router-link>
   </div>
-  <router-link to="/clients">Back to Clients</router-link>
 </template>
 
 <script>
