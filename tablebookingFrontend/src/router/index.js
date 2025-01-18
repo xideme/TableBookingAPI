@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import ClientsView from '@/views/ClientsView.vue';
 import ReservationsView from '@/views/ReservationsView.vue';
 import TablesView from '@/views/TablesView.vue';
+import ClientsAdd from '@/views/ClientsAdd.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,11 +18,18 @@ const router = createRouter({
             name: 'about',
             component: () => import('../views/AboutView.vue')
         },
+
         {
             path: '/clients',
             name: 'clients',
             component: ClientsView,
         },
+        {
+            path: '/clients/create',
+            name: 'clients-create',
+            component: ClientsAdd,
+        },
+
         {
             path: '/reservations',
             name: 'reservations',

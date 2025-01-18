@@ -8,13 +8,7 @@ import CountInteger from './components/CountInteger.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" 
-    class="logo" 
-    src="./assets/logo.svg" 
-    width="125" 
-    height="125" />
-
-    <div>
+    <div class="header-container">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/clients">Clients</RouterLink>
@@ -34,6 +28,19 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; 
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+nav {
+  display: flex;
+  gap: 15px; 
 }
 
 @media (min-width: 1024px) {

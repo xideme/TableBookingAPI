@@ -27,11 +27,19 @@ export default {
 
 <template>
     <main>
-        <!-- Pass client data to the ClientsTable component -->
+        <router-link to="/clients/create" class="btn">Add New Client</router-link>
         <ClientsTable :items="allClients" />
     </main>
 </template>
 
 <style scoped>
-/* Add any specific styles for this view here if needed */
+.btn {
+  margin-top: 20px;
+  padding: 5px 10px;
+  background-color: #1eff56;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 </style>

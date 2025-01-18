@@ -6,21 +6,45 @@ export default {
 </script>
 
 <template>
-    <table class="table table-striped">
-        <thead class="table-dark">
+    <table class="table-table">
+        <thead class="table-thead">
             <tr>
-                <th>reservation_id</th>
-                <th>seats</th>
+                <th>Reservation id</th>
+                <th>Seats</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in items" :key="item.id">
                 <td>{{ item.reservation_id }}</td>
                 <td>{{ item.seats }}</td>
+                <td></td>
             </tr>
         </tbody>
     </table>
 </template>
 
 <style scoped>
+.table-thead {
+    background-color: #9bf7c1;
+    color: #212926;
+    font-weight: bold;
+}
+
+.table-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212926;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    background-color: #f9f9f9;
+    font-family: 'Monaco', monospace; 
+}
+
+.table-table th,
+.table-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 2px solid #000000;
+}
 </style>

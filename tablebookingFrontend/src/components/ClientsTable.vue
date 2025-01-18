@@ -9,13 +9,14 @@ export default {
 
 <template>    
     <body>
-        <table class="table table-striped table-bordered">
-            <thead>
+        <table class="client-table">
+            <thead class="client-thead">
                 <tr>
                 <th>Client Name</th>
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Bonus Level</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@ export default {
                     <td>{{ item.phone }}</td>
                     <td>{{ item.email }}</td>
                     <td>{{ item.bonus_level }}</td>
+                    <td></td>
                 </tr>
             </tbody>
             
@@ -32,4 +34,26 @@ export default {
 </template>
 
 <style scoped>
+.client-thead {
+    background-color: #9bf7c1;
+    color: #212926;
+    font-weight: bold;
+}
+
+.client-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212926;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    background-color: #f9f9f9;
+    font-family: 'Monaco', monospace;
+}
+
+.client-table th,
+.client-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 2px solid #000000;
+}
 </style>
