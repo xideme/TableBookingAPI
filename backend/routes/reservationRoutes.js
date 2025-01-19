@@ -6,6 +6,6 @@ module.exports = (app) => {
     .post(ReservationsController.create)
     app.route("/reservations/:id")
     .get(ReservationsController.getById)
-    .put(ReservationsController.editById)
+    .put(ReservationsController.updateReservation)
     .delete(ReservationsController.deleteById)
 }

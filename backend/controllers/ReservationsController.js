@@ -48,29 +48,25 @@ exports.create = async (req, res) => {
     }
 };
 
-exports.editById = async (req, res) => {
+exports.updateReservation = async (req, res) => {
+    const reservationId = req.params.id;
+    const { client_id, table_id, datetime, adult_count, children_count } = req.body;
+
     try {
-        const reservation = await db.Reservation.findByPk(req.params.id);
+        const reservation = await db.Reservation.findByPk(reservationId);
         if (!reservation) {
             return res.status(404).send({ error: 'Reservation not found' });
         }
 
-        if (!req.body.client_id || !req.body.table_id || !req.body.datetime || !req.body.adult_count || !req.body.children_count) {
-            return res.status(400).send({ error: 'Missing one or more parameters' });
-        }
-
-        reservation.client_id = req.body.client_id;
-        reservation.table_id = req.body.table_id;
-        reservation.datetime = req.body.datetime;
-        reservation.adult_count = req.body.adult_count;
-        reservation.children_count = req.body.children_count;
+        reservation.client_id = client_id;
+        reservation.table_id = table_id;
+        reservation.datetime = datetime;
+        reservation.adult_count = adult_count;
+        reservation.children_count = children_count;
 
         await reservation.save();
 
-        return res
-            .status(200)
-            .location(`${Utils.getBaseUrl(req)}/reservations/${reservation.id}`)
-            .send(reservation);
+        res.status(200).send(reservation);
     } catch (error) {
         res.status(500).send({ error: 'An error occurred while updating the reservation' });
     }

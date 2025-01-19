@@ -1,7 +1,31 @@
 <script>
 export default {
     name: "ReservationsTable",
-    props: {items:Array}
+    props: {items:Array},
+    methods: {
+    async deleteReservation(reservationID) {
+      const confirmation = confirm("Are you sure you want to delete this reservation?");
+      if (!confirmation) return;
+
+      try {
+        const response = await fetch(`http://localhost:8080/reservations/${reservationID}`, {
+          method: "DELETE",
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to delete reservation. Status: ${response.status}`);
+        }
+
+        const index = this.items.findIndex(reservation => reservation.id === reservationID);
+        if (index !== -1) {
+          this.items.splice(index, 1);
+        }
+        alert("Reservation deleted successfully.");
+      } catch (error) {
+        console.error("Error deleting reservation:", error);
+        alert("Failed to delete the reservation. Please try again.");
+      }
+    }
+  }
 }
 </script>
 
@@ -26,7 +50,17 @@ export default {
                 <td>{{ item.datetime }}</td>
                 <td>{{ item.adult_count }}</td>
                 <td>{{ item.children_count }}</td>
-                <td></td>
+                <td>
+                    <router-link :to="`/reservations/${item.id}`" class="btn">
+                       Details
+                    </router-link>
+                    <router-link :to="`/reservations/update/${item.id}`" class="btn">
+                        Update
+                     </router-link>
+                    <button @click="deleteReservation(item.id)" class="btn">
+                        Delete
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
