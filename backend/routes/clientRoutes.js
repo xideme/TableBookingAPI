@@ -6,6 +6,6 @@ module.exports = (app) => {
     .post(ClientsController.create)
     app.route("/clients/:id")
     .get(ClientsController.getById)
-    .put(ClientsController.editById)
+    .put(ClientsController.updateClient)
     .delete(ClientsController.deleteById)
 }

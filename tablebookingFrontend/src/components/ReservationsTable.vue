@@ -9,16 +9,20 @@ export default {
     <table class="reservation-table">
         <thead class="reservation-thead">
             <tr>
-                <th>Client id</th>
+                <th>ID</th>
+                <th>Client_ID</th>
+                <th>Table_ID</th>
                 <th>Datetime</th>
                 <th>Adult count</th>
                 <th>Children count</th>
-                <th>Actions</th>
+                <th>Action buttons</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in items" :key="item.id">
+                <td>{{ item.id }}</td>
                 <td>{{ item.client_id }}</td>
+                <td>{{ item.table_id }}</td>
                 <td>{{ item.datetime }}</td>
                 <td>{{ item.adult_count }}</td>
                 <td>{{ item.children_count }}</td>

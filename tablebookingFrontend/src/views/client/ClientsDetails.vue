@@ -30,7 +30,7 @@
       async fetchClient() {
         const clientId = this.$route.params.id;
         try {
-          const response = await fetch(`http://localhost:8080/clients/:id`);
+          const response = await fetch(`http://localhost:8080/clients/${clientId}`);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }

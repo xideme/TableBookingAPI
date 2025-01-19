@@ -9,14 +9,14 @@ export default {
     <table class="table-table">
         <thead class="table-thead">
             <tr>
-                <th>Reservation id</th>
+                <th>ID</th>
                 <th>Seats</th>
-                <th>Actions</th>
+                <th>Action buttons</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in items" :key="item.id">
-                <td>{{ item.reservation_id }}</td>
+                <td>{{ item.id }}</td>
                 <td>{{ item.seats }}</td>
                 <td></td>
             </tr>

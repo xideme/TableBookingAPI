@@ -7,6 +7,7 @@ import ClientsAdd from '@/views/client/ClientsAdd.vue';
 import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
 import TablesAdd from '@/views/table/TablesAdd.vue';
 import ClientsDetails from '@/views/client/ClientsDetails.vue';
+import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
 
 
 const router = createRouter({
@@ -28,17 +29,24 @@ const router = createRouter({
             name: 'clients',
             component: ClientsView,
         },
-        {
+        {   // Client Create (CREATE)
             path: '/clients/create',
             name: 'clients-create',
             component: ClientsAdd,
         },
-        {
-            path: '/clients/details',
+        {   // Client Details (READ)
+            path: '/clients/:id',
             name: 'clients-details',
             component: ClientsDetails,
         },
+        {   // Client Update (UPDATE)
+            path: '/clients/update/:id',
+            name: 'clients-update',
+            component: ClientsUpdate,
+        },
 
+
+        
         {
             path: '/reservations',
             name: 'reservations',

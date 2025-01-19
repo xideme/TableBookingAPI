@@ -1,10 +1,10 @@
-const {db} = require('../db');
+const { db } = require('../db');
 const Utils = require('./utils');
 
 exports.getAll = async (req, res) => {
     try {
         const reservations = await db.Reservation.findAll({
-            attributes: ['id', 'client_id', 'datetime', 'adult_count', 'children_count']
+            attributes: ['id', 'client_id', 'table_id', 'datetime', 'adult_count', 'children_count']
         });
         res.status(200).send(reservations);
     } catch (error) {
@@ -14,7 +14,9 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try {
-        const reservation = await db.Reservation.findByPk(req.params.id);
+        const reservation = await db.Reservation.findByPk(req.params.id, {
+            attributes: ['id', 'client_id', 'table_id', 'datetime', 'adult_count', 'children_count']
+        });
         if (!reservation) {
             return res.status(404).send({ error: 'Reservation not found' });
         }
@@ -25,12 +27,13 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    if (!req.body.client_id || !req.body.datetime || !req.body.adult_count || !req.body.children_count) {
-        return res.status(400).send({ error: 'Missing one or all parameters' });
+    if (!req.body.client_id || !req.body.table_id || !req.body.datetime || !req.body.adult_count || !req.body.children_count) {
+        return res.status(400).send({ error: 'Missing one or more parameters' });
     }
     try {
         const newReservation = {
             client_id: req.body.client_id,
+            table_id: req.body.table_id,
             datetime: req.body.datetime,
             adult_count: req.body.adult_count,
             children_count: req.body.children_count
@@ -52,11 +55,12 @@ exports.editById = async (req, res) => {
             return res.status(404).send({ error: 'Reservation not found' });
         }
 
-        if (!req.body.client_id || !req.body.datetime || !req.body.adult_count || !req.body.children_count) {
-            return res.status(400).send({ error: 'Missing one or all parameters' });
+        if (!req.body.client_id || !req.body.table_id || !req.body.datetime || !req.body.adult_count || !req.body.children_count) {
+            return res.status(400).send({ error: 'Missing one or more parameters' });
         }
 
         reservation.client_id = req.body.client_id;
+        reservation.table_id = req.body.table_id;
         reservation.datetime = req.body.datetime;
         reservation.adult_count = req.body.adult_count;
         reservation.children_count = req.body.children_count;
@@ -72,24 +76,22 @@ exports.editById = async (req, res) => {
     }
 };
 
-exports.deleteById = 
-async (req, res) => {
+exports.deleteById = async (req, res) => {
     const reservation = await getReservation(req, res);
-    if(!reservation) {return}
+    if (!reservation) { return }
     await reservation.destroy();
-    res.status(204).send({Error: 'No Content'});
+    res.status(204).send({ Error: 'No Content' });
 }
 
-const getReservation = 
-async (req, res) => {
+const getReservation = async (req, res) => {
     const idNumber = parseInt(req.params.id);
-    if(isNaN(idNumber)) {
-        res.status(400).send({Error: `ID must be a whole number: ${idNumber}`});
+    if (isNaN(idNumber)) {
+        res.status(400).send({ Error: `ID must be a whole number: ${idNumber}` });
         return null;
     }
     const reservation = await db.Reservation.findByPk(idNumber);
-    if(!reservation) {
-        res.status(404).send({Error: `reservation with this id not found: ${idNumber}`});
+    if (!reservation) {
+        res.status(404).send({ Error: `Reservation with this id not found: ${idNumber}` });
         return null;
     }
     return reservation;

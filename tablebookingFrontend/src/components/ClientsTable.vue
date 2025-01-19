@@ -35,15 +35,17 @@ export default {
         <table class="client-table">
             <thead class="client-thead">
                 <tr>
-                <th>Client Name</th>
+                <th>ID</th>
+                <th>Client's Name</th>
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Bonus Level</th>
-                <th>Actions</th>
+                <th>Action buttons</th>
             </tr>
             </thead>
             <tbody>
                 <tr v-for="item in items" v-bind:key="item.id">
+                    <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.phone }}</td>
                     <td>{{ item.email }}</td>

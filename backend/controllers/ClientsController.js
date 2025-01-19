@@ -45,40 +45,51 @@ exports.create = async (req, res) => {
     }
 };
 
-exports.editById = async (req, res) => {
+exports.updateClient = async (req, res) => {
+    const clientId = req.params.id;
+    const { name, phone, email, bonus_level } = req.body;
+
     try {
-        const client = await db.Client.findByPk(req.params.id);
+        const client = await db.Client.findByPk(clientId);
         if (!client) {
             return res.status(404).send({ error: 'Client not found' });
         }
 
-        if (!req.body.name || !req.body.phone || !req.body.email || !req.body.bonus_level) {
-            return res.status(400).send({ error: 'Missing one or all parameters' });
-        }
-
-        client.name = req.body.name;
-        client.phone = req.body.phone;
-        client.email = req.body.email;
-        client.bonus_level = req.body.bonus_level;
+        client.name = name;
+        client.phone = phone;
+        client.email = email;
+        client.bonus_level = bonus_level;
 
         await client.save();
 
-        return res
-            .status(200)
-            .location(`${Utils.getBaseUrl(req)}/clients/${client.id}`)
-            .send(client);
+        res.status(200).send(client);
     } catch (error) {
         res.status(500).send({ error: 'An error occurred while updating the client' });
     }
 };
 
-exports.deleteById = 
-async (req, res) => {
-    const client = await getClient(req, res);
-    if(!client) {return}
-    await client.destroy();
-    res.status(204).send({Error: 'No Content'});
-}
+
+exports.deleteById = async (req, res) => {
+    const clientId = req.params.id;
+    try {
+        // Delete related reservations first
+        await db.Reservation.destroy({
+            where: { client_id: clientId }
+        });
+
+        // Then delete the client
+        const client = await db.Client.findByPk(clientId);
+        if (!client) {
+            return res.status(404).send({ error: 'Client not found' });
+        }
+
+        await client.destroy();
+
+        return res.status(200).send({ message: 'Client deleted successfully' });
+    } catch (error) {
+        res.status(500).send({ error: 'An error occurred while deleting the client' });
+    }
+};
 
 const getClient = 
 async (req, res) => {
