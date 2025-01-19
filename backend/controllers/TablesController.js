@@ -45,36 +45,47 @@ exports.create = async (req, res) => {
     }
 };
 
-exports.editById = async (req, res) => {
+exports.updateTable = async (req, res) => {
+    const tableId = req.params.id;
+    const { seats } = req.body;
+
     try {
-        const table = await db.Table.findByPk(req.params.id);
+        const table = await db.Table.findByPk(tableId);
         if (!table) {
             return res.status(404).send({ error: 'Table not found' });
         }
 
-        if (!req.body.seats) {
-            return res.status(400).send({ error: 'Missing seats parameter' });
-        }
-
-        table.seats = req.body.seats;
+        table.seats = seats;
 
         await table.save();
 
-        return res
-            .status(200)
-            .location(`${Utils.getBaseUrl(req)}/tables/${table.id}`)
-            .send(table);
+        res.status(200).send(table);
     } catch (error) {
         res.status(500).send({ error: 'An error occurred while updating the table' });
     }
 };
 
 exports.deleteById = async (req, res) => {
-    const table = await getTable(req, res);
-    if (!table) { return }
-    await table.destroy();
-    res.status(204).send({ Error: 'No Content' });
-}
+    const tableId = req.params.id;
+    try {
+        
+        await db.Reservation.destroy({
+            where: { table_id: tableId }
+        });
+
+        
+        const table = await db.Table.findByPk(tableId);
+        if (!table) {
+            return res.status(404).send({ error: 'Table not found' });
+        }
+
+        await table.destroy();
+
+        return res.status(204).send({ message: 'Table deleted successfully' });
+    } catch (error) {
+        res.status(500).send({ error: 'An error occurred while deleting the table' });
+    }
+};
 
 const getTable = async (req, res) => {
     const idNumber = parseInt(req.params.id);

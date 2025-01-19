@@ -8,6 +8,8 @@ import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
 import TablesAdd from '@/views/table/TablesAdd.vue';
 import ClientsDetails from '@/views/client/ClientsDetails.vue';
 import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
+import TablesDetails from '@/views/table/TablesDetails.vue';
+import TablesUpdate from '@/views/table/TablesUpdate.vue';
 
 
 const router = createRouter({
@@ -63,10 +65,20 @@ const router = createRouter({
             name: 'tables',
             component: TablesView,
         },
-        {
+        { // Table Create (CREATE)
             path: '/tables/create',
             name: 'tables-create',
             component: TablesAdd,
+        },
+        { // Table Details (READ)
+            path: '/tables/:id',
+            name: 'tables-details',
+            component: TablesDetails,
+        },
+        { // Table Update (UPDATE)
+            path: '/tables/update/:id',
+            name: 'tables-update',
+            component: TablesUpdate,
         },
     ]
 })

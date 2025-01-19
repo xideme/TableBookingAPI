@@ -6,6 +6,6 @@ module.exports = (app) => {
     .post(TablesController.create)
     app.route("/tables/:id")
     .get(TablesController.getById)
-    .put(TablesController.editById)
+    .put(TablesController.updateTable)
     .delete(TablesController.deleteById)
 }
