@@ -25,7 +25,7 @@ export default {
 </script>
 <template>
     <main>
-        
+        <router-link to="/clients/create" class="btn">Add New Client</router-link>
         <ClientsTable :items="allClients" />
     </main>
 </template>
