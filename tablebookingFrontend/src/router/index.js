@@ -1,11 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ReservationsView from '@/views/reservation/ReservationsView.vue';
-import TablesView from '@/views/table/TablesView.vue';
 import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
-import TablesAdd from '@/views/table/TablesAdd.vue';
-import TablesDetails from '@/views/table/TablesDetails.vue';
-import TablesUpdate from '@/views/table/TablesUpdate.vue';
 import ReservationsDetails from '@/views/reservation/ReservationsDetails.vue';
 import ReservationsUpdate from '@/views/reservation/ReservationsUpdate.vue';
 import ClientsView from '@/views/client/ClientsView.vue';
@@ -70,26 +66,7 @@ const router = createRouter({
             component: ReservationsUpdate,
         },
 
-        {
-            path: '/tables',
-            name: 'tables',
-            component: TablesView,
-        },
-        { // Table Create (CREATE)
-            path: '/tables/create',
-            name: 'tables-create',
-            component: TablesAdd,
-        },
-        { // Table Details (READ)
-            path: '/tables/:id',
-            name: 'tables-details',
-            component: TablesDetails,
-        },
-        { // Table Update (UPDATE)
-            path: '/tables/update/:id',
-            name: 'tables-update',
-            component: TablesUpdate,
-        },
+        
     ]
 })
 
