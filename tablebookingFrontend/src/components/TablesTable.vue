@@ -19,7 +19,9 @@ export default {
                 <td>{{ item.id }}</td>
                 <td>{{ item.seats }}</td>
                 <td>
-                    
+                    <router-link :to="`/tables/${item.id}`" class="btn">
+                       Details
+                    </router-link>
                 </td>
             </tr>
         </tbody>

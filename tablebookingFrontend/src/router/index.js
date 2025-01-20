@@ -10,6 +10,7 @@ import ClientsDetails from '@/views/client/ClientsDetails.vue';
 import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
 import TablesView from '@/views/table/TablesView.vue';
 import TablesAdd from '@/views/table/TablesAdd.vue';
+import TablesDetails from '@/views/table/TablesDetails.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +56,11 @@ const router = createRouter({
             path: '/tables/create',
             name: 'tables-create',
             component: TablesAdd,
+        },
+        { // Table Details (READ)
+            path: '/tables/:id',
+            name: 'tables-details',
+            component: TablesDetails,
         },
 
         {
