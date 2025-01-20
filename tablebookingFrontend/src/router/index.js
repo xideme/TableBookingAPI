@@ -9,6 +9,7 @@ import TablesAdd from '@/views/table/TablesAdd.vue';
 import TablesDetails from '@/views/table/TablesDetails.vue';
 import ReservationsView from '@/views/reservation/ReservationsView.vue';
 import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
+import ReservationsDetails from '@/views/reservation/ReservationsDetails.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +76,11 @@ const router = createRouter({
             path: '/reservations/create',
             name: 'reservations-create',
             component: ReservationsAdd,
+        },
+        {  // Reservation Details (READ)
+            path: '/reservations/:id',
+            name: 'reservations-details',
+            component: ReservationsDetails,
         },
 
         

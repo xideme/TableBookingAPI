@@ -27,7 +27,9 @@ export default {
                 <td>{{ item.adult_count }}</td>
                 <td>{{ item.children_count }}</td>
                 <td>
-                    
+                    <router-link :to="`/reservations/${item.id}`" class="btn">
+                       Details
+                    </router-link>
                 </td>
             </tr>
         </tbody>
