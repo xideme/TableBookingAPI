@@ -15,7 +15,7 @@ export default{
 </script>
 <template>
     <main>
-        
+        <router-link to="/reservations/create" class="btn">Add New Reservation</router-link>
         <ReservationsTable :items=allReservations />
     </main>
 </template>
