@@ -22,6 +22,10 @@ export default {
                     <router-link :to="`/tables/${item.id}`" class="btn">
                        Details
                     </router-link>
+                    <router-link :to="`/tables/update/${item.id}`" class="btn">
+                        Update
+                    </router-link>
+                    
                 </td>
             </tr>
         </tbody>

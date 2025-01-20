@@ -62,6 +62,11 @@ const router = createRouter({
             name: 'tables-details',
             component: TablesDetails,
         },
+        { // Table Update (UPDATE)
+            path: '/tables/update/:id',
+            name: 'tables-update',
+            component: TablesUpdate,
+        },
 
         {
             path: '/reservations',
