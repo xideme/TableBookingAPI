@@ -10,6 +10,7 @@ import ReservationsDetails from '@/views/reservation/ReservationsDetails.vue';
 import ReservationsUpdate from '@/views/reservation/ReservationsUpdate.vue';
 import ClientsView from '@/views/client/ClientsView.vue';
 import ClientsAdd from '@/views/client/ClientsAdd.vue';
+import ClientsDetails from '@/views/client/ClientsDetails.vue';
 
 
 const router = createRouter({
@@ -35,6 +36,11 @@ const router = createRouter({
             path: '/clients/create',
             name: 'clients-create',
             component: ClientsAdd,
+        },
+        {   // Client Details (READ)
+            path: '/clients/:id',
+            name: 'clients-details',
+            component: ClientsDetails,
         },
 
         

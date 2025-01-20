@@ -26,6 +26,9 @@ export default {
                     <td>{{ item.email }}</td>
                     <td>{{ item.bonus_level }}</td>
                     <td>
+                        <router-link :to="`/clients/${item.id}`" class="btn">
+                            Details
+                        </router-link>
                         
                     </td>
                 </tr>
