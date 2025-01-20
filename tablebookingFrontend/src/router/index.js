@@ -11,7 +11,7 @@ import ReservationsUpdate from '@/views/reservation/ReservationsUpdate.vue';
 import ClientsView from '@/views/client/ClientsView.vue';
 import ClientsAdd from '@/views/client/ClientsAdd.vue';
 import ClientsDetails from '@/views/client/ClientsDetails.vue';
-
+import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +41,11 @@ const router = createRouter({
             path: '/clients/:id',
             name: 'clients-details',
             component: ClientsDetails,
+        },
+        {   // Client Update (UPDATE)
+            path: '/clients/update/:id',
+            name: 'clients-update',
+            component: ClientsUpdate,
         },
 
         
