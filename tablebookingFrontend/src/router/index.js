@@ -10,6 +10,7 @@ import TablesDetails from '@/views/table/TablesDetails.vue';
 import ReservationsView from '@/views/reservation/ReservationsView.vue';
 import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
 import ReservationsDetails from '@/views/reservation/ReservationsDetails.vue';
+import ReservationsUpdate from '@/views/reservation/ReservationsUpdate.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -82,7 +83,11 @@ const router = createRouter({
             name: 'reservations-details',
             component: ReservationsDetails,
         },
-
+        { // Reservation Update (UPDATE)
+            path: '/reservations/update/:id',
+            name: 'reservations-update',
+            component: ReservationsUpdate,
+        },
         
     ]
 })

@@ -30,6 +30,9 @@ export default {
                     <router-link :to="`/reservations/${item.id}`" class="btn">
                        Details
                     </router-link>
+                    <router-link :to="`/reservations/update/${item.id}`" class="btn">
+                        Update
+                    </router-link>
                 </td>
             </tr>
         </tbody>
