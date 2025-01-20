@@ -7,6 +7,7 @@ import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
 import TablesView from '@/views/table/TablesView.vue';
 import TablesAdd from '@/views/table/TablesAdd.vue';
 import TablesDetails from '@/views/table/TablesDetails.vue';
+import ReservationsView from '@/views/reservation/ReservationsView.vue';
 
 
 const router = createRouter({
@@ -65,7 +66,11 @@ const router = createRouter({
             component: TablesUpdate,
         },
 
-        
+        {
+            path: '/reservations',
+            name: 'reservations',
+            component: ReservationsView,
+        },
 
         
     ]
