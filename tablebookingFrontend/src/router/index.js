@@ -7,6 +7,7 @@ import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
 import TablesView from '@/views/table/TablesView.vue';
 import TablesAdd from '@/views/table/TablesAdd.vue';
 import TablesDetails from '@/views/table/TablesDetails.vue';
+import TablesUpdate from '@/views/table/TablesUpdate.vue';
 import ReservationsView from '@/views/reservation/ReservationsView.vue';
 import ReservationsAdd from '@/views/reservation/ReservationsAdd.vue';
 import ReservationsDetails from '@/views/reservation/ReservationsDetails.vue';
