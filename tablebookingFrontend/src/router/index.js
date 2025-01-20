@@ -8,6 +8,7 @@ import TablesDetails from '@/views/table/TablesDetails.vue';
 import TablesUpdate from '@/views/table/TablesUpdate.vue';
 import ReservationsDetails from '@/views/reservation/ReservationsDetails.vue';
 import ReservationsUpdate from '@/views/reservation/ReservationsUpdate.vue';
+import ClientsView from '@/views/client/ClientsView.vue';
 
 
 const router = createRouter({
@@ -24,7 +25,11 @@ const router = createRouter({
             component: () => import('../views/AboutView.vue')
         },
 
-        
+        {
+            path: '/clients',
+            name: 'clients',
+            component: ClientsView,
+        },
 
 
         
