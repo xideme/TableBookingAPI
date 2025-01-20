@@ -2,7 +2,28 @@
 export default {
     name: "TablesTable",
     props: {items:Array},
-    
+    methods: {
+    async deleteTable(tableID) {
+      const confirmation = confirm("Are you sure you want to delete this table?");
+      if (!confirmation) return;
+      try {
+        const response = await fetch(`http://localhost:8080/tables/${tableID}`, {
+          method: "DELETE",
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to delete table. Status: ${response.status}`);
+        }
+        const index = this.items.findIndex(table => table.id === tableID);
+        if (index !== -1) {
+          this.items.splice(index, 1);
+        }
+        alert("Table deleted successfully.");
+      } catch (error) {
+        console.error("Error deleting table:", error);
+        alert("Failed to delete the table. Please try again.");
+      }
+    }
+  }
 };
 </script>
 <template>
@@ -25,7 +46,9 @@ export default {
                     <router-link :to="`/tables/update/${item.id}`" class="btn">
                         Update
                     </router-link>
-                    
+                    <button @click="deleteTable(item.id)" class="btn">
+                        Delete
+                    </button>
                 </td>
             </tr>
         </tbody>
