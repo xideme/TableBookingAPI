@@ -8,6 +8,8 @@ import ClientsView from '@/views/client/ClientsView.vue';
 import ClientsAdd from '@/views/client/ClientsAdd.vue';
 import ClientsDetails from '@/views/client/ClientsDetails.vue';
 import ClientsUpdate from '@/views/client/ClientsUpdate.vue';
+import TablesView from '@/views/table/TablesView.vue';
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,7 +46,13 @@ const router = createRouter({
             component: ClientsUpdate,
         },
 
-        
+        {
+            path: '/tables',
+            name: 'tables',
+            component: TablesView,
+        },
+
+
         {
             path: '/reservations',
             name: 'reservations',
